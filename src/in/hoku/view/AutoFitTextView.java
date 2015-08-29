@@ -29,20 +29,33 @@ public class AutoFitTextView extends TextView {
 	private static final float MIN_TEXT_SIZE = 2f;
 	/** Objects for determining the size. */
 	private Paint paint = new Paint();
+	/** First specified size. */
+	private float originalFontSize = 0f;
 
 	/** Constructor. */
 	public AutoFitTextView(Context c) {
 		super(c);
+		setLines(1);
 	}
 
 	/** Constructor. */
 	public AutoFitTextView(Context c, AttributeSet attrs) {
 		super(c, attrs);
+		setLines(1);
+	}
+
+	/** Constructor. */
+	public AutoFitTextView(Context c, AttributeSet attrs, int defStyle) {
+		super(c, attrs, defStyle);
+		setLines(1);
 	}
 
 	/** onMeasure. */
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+		if (originalFontSize == 0f) {
+			originalFontSize = getTextSize();
+		}
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 		resize(widthMeasureSpec, heightMeasureSpec);
 	}
@@ -51,10 +64,10 @@ public class AutoFitTextView extends TextView {
 	 * Resize!!
 	 */
 	private void resize(int widthMeasureSpec, int heightMeasureSpec) {
-		// Get the raw font height.
-		paint.setTextSize(getTextSize());
-		FontMetrics rawFm = paint.getFontMetrics();
-		float rawFontHaigh = rawFm.bottom - rawFm.top + getPaddingTop() + getPaddingBottom();
+		// Get the original font height.
+		paint.setTextSize(originalFontSize);
+		FontMetrics origFm = paint.getFontMetrics();
+		float origFontHaigh = origFm.bottom - origFm.top + getPaddingTop() + getPaddingBottom();
 
 		// Get the now font size.
 		float fontSize = getTextSize();
@@ -79,7 +92,8 @@ public class AutoFitTextView extends TextView {
 
 		// Setting view size.
 		if (getLayoutParams().height == ViewGroup.LayoutParams.WRAP_CONTENT) {
-			setMeasuredDimension(widthMeasureSpec, (int) rawFontHaigh);
+			int measureSpecH = MeasureSpec.makeMeasureSpec((int) origFontHaigh, MeasureSpec.AT_MOST);
+			setMeasuredDimension(widthMeasureSpec, measureSpecH);
 		} else {
 			setMeasuredDimension(widthMeasureSpec, heightMeasureSpec);
 		}

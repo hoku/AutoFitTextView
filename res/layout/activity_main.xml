@@ -13,7 +13,7 @@
         android:background="#888"
         android:padding="5dp"
         android:text="blah blah"
-        android:textSize="16sp" />
+        android:textSize="22sp" />
 
     <in.hoku.view.AutoFitTextView
         android:id="@+id/textView2"
@@ -23,7 +23,7 @@
         android:background="#f88"
         android:padding="5dp"
         android:text="blah blah"
-        android:textSize="16sp" />
+        android:textSize="22sp" />
 
     <in.hoku.view.AutoFitTextView
         android:id="@+id/textView3"
@@ -33,7 +33,7 @@
         android:background="#8f8"
         android:padding="5dp"
         android:text="blah blah blah blah blah blah blah"
-        android:textSize="16sp" />
+        android:textSize="22sp" />
 
     <in.hoku.view.AutoFitTextView
         android:id="@+id/textView4"
@@ -43,6 +43,6 @@
         android:background="#88f"
         android:padding="5dp"
         android:text="blah blah blah blah blah blah blah blah blah blah blah blah blah"
-        android:textSize="16sp" />
+        android:textSize="22sp" />
 
 </LinearLayout>
