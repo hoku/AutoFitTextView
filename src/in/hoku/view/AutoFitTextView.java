@@ -65,6 +65,7 @@ public class AutoFitTextView extends TextView {
 	 */
 	private void resize(int widthMeasureSpec, int heightMeasureSpec) {
 		// Get the original font height.
+		paint.setAntiAlias(true);
 		paint.setTextSize(originalFontSize);
 		FontMetrics origFm = paint.getFontMetrics();
 		float origFontHaigh = origFm.bottom - origFm.top + getPaddingTop() + getPaddingBottom();
@@ -80,7 +81,7 @@ public class AutoFitTextView extends TextView {
 			// Gradually reduce the font size.
 			fontSize--;
 
-			// End the loop if font size smaller than view width.
+			// End the loop if font size smaller than minimum limit size.
 			if (fontSize <= MIN_TEXT_SIZE) {
 				fontSize = MIN_TEXT_SIZE;
 				break;
