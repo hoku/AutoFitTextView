@@ -22,4 +22,4 @@ This class adjust size of the text automatically, if the text is long.
         android:textSize="22sp" />
 
 # License
-TIM License.
+MIT License.
